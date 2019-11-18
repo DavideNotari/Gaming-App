@@ -1,8 +1,7 @@
-import 'package:flutter_app/first_fragment.dart';
-import 'package:flutter_app/second_fragment.dart';
-import 'package:flutter_app/third_fragment.dart';
+import 'package:flutter_app/team_fragment.dart';
+import 'package:flutter_app/news_fragment.dart';
+import 'package:flutter_app/social_fragment.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter/cupertino.dart';
 
 class DrawerItem {
@@ -14,9 +13,9 @@ class DrawerItem {
 class HomePage extends StatefulWidget {
   //To change page add here
   final drawerItems = [
-    new DrawerItem("Fragment 1", Icons.rss_feed),
-    new DrawerItem("Fragment 2", Icons.local_pizza),
-    new DrawerItem("Fragment 3", Icons.info)
+    new DrawerItem("Notizie", Icons.style),
+    new DrawerItem("Team", Icons.supervisor_account),
+    new DrawerItem("Social", Icons.face)
   ];
 
   @override
@@ -25,15 +24,17 @@ class HomePage extends StatefulWidget {
   }
 }
 
+
+//General Code to change page
 class HomePageState extends State<HomePage> {
   int _selectedDrawerIndex = 0;
 
   _getDrawerItemWidget(int pos) {
     switch (pos) {
       case 0:
-        return new FirstFragment();
-      case 1:
         return new SecondFragment();
+      case 1:
+        return new FirstFragment();
       case 2:
         return new ThirdFragment();
 
@@ -70,7 +71,10 @@ class HomePageState extends State<HomePage> {
         child: new Column(
           children: <Widget>[
             new UserAccountsDrawerHeader(
-                accountName: new Text("Prova"), accountEmail: Text("prova@notreal.com")),
+                accountName:
+                new Text("Prova"),
+                accountEmail: Text("prova@notreal.com")
+            ),
             new Column(children: drawerOptions)
           ],
         ),

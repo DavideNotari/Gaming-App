@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/rendering.dart';
 
-
 class FirstFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -11,7 +10,6 @@ class FirstFragment extends StatelessWidget {
       child: MainPageScaffold(),
     );
   }
-
 }
 
 class MainPageScaffold extends StatefulWidget {
@@ -21,68 +19,49 @@ class MainPageScaffold extends StatefulWidget {
 
 class MainPageScaffoldState extends State<MainPageScaffold> {
   final _suggestions = <WordPair>[];
-  final _biggerFont = const TextStyle(fontSize: 18.0);
   int number = 3;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /**
-          Drawer(
-          child: ListView(
-          padding: const EdgeInsets.all(8),
-          children: <Widget>[
-          Container(
-          height: 50,
-          color: Colors.amber[600],
-          child: ListTile(
-          title: Text('Item 1'),
-          onTap: () {
-          // Update the state of the app.
-          // ...
-          // Then close the drawer.
-          Navigator.pop(context);
-          },
-          )),
-          Container(
-          height: 50,
-          color: Colors.amber[500],
-          child: const Center(child: Text('Entry B')),
-          ),
-          Container(
-          height: 50,
-          color: Colors.amber[100],
-          child: const Center(child: Text('Entry C')),
-          ),
-          ],
-          ),
-          ),
-       **/
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         child: Container(
           height: 50.0,
         ),
       ),
-      body: Column(
-        children: <Widget>[
-          Text('Team Name'),
-          Row(children: <Widget>[
-            Image(
-              image: NetworkImage(
-                  'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
-              height: 100.0,
-            ),
-            Column(children: <Widget>[
-              Text("Info about team "),
-              Text("Subtitle"),
-            ]),
-          ]),
-          Expanded(
-            child: _buildUserRows(),
+      body: Padding(
+        padding: EdgeInsets.all(3.0),
+        child: Card(
+          child: Column(
+            children: <Widget>[
+              Text('Team Name'),
+              Row(children: <Widget>[
+                Container(
+                    width: 100.0,
+                    height: 100.0,
+                    child: ClipRRect(
+                      borderRadius: new BorderRadius.circular(50.0),
+                      child: Image(
+                        image: NetworkImage(
+                            'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
+                        height: 100.0,
+                      ),
+                    )),
+                Padding(
+                    padding: EdgeInsets.only(left: 10.0),
+                    child: Column(children: <Widget>[
+                      Text("Info about team "),
+                      Text("Subtitle"),
+                    ])),
+              ]),
+              Expanded(
+                child: _buildUserRows(),
+              ),
+            ],
+            //children: //_buildSuggestions(),
           ),
-        ],
-        //children: //_buildSuggestions(),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => setState(() {
@@ -97,7 +76,7 @@ class MainPageScaffoldState extends State<MainPageScaffold> {
 
   Widget _buildUserRows() {
     return ListView.builder(
-      //codice da rivedere
+        //codice da rivedere
         padding: const EdgeInsets.all(16.0),
         itemBuilder: /*1*/ (context, i) {
           if (i.isOdd) return Divider(); /*2*/
@@ -116,7 +95,7 @@ class MainPageScaffoldState extends State<MainPageScaffold> {
         leading: _iconRow(),
         title: const Text('Player'),
         subtitle:
-        player == null ? const Text('player number not found') : player,
+            player == null ? const Text('player number not found') : player,
         contentPadding: const EdgeInsets.all(10.0),
         onTap: () {});
   }
