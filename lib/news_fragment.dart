@@ -1,27 +1,31 @@
 import 'package:flutter/material.dart';
 
+final controller = PageController(
+  initialPage: 0,
+);
+
+List <String> images = ["http://www.dacoromania.org/upload/o/71/712227_wolf-png-logo.png","https://www.pinclipart.com/picdir/middle/423-4232536_esport-call-of-duty-team-esport-logo-png.png"];
+
 class SecondFragment extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     final controller = PageController(
-      initialPage: 1,
+      initialPage: 0,
     );
-    // TODO: implement build
     return new PageView(
       controller: controller,
-      children: <Widget>[_mainNewsWidget(), _teamNewsWidget()],
+      children: <Widget>[_mainNewsWidget(), _mainNewsWidget()],
     );
   }
 }
 
 Widget _mainNewsWidget() {
+
   return new Padding(
       padding: EdgeInsets.all(15.0), child: AnimatedContainerApp());
 }
 
-Widget _teamNewsWidget() {
-  return new Text("Helloooooooooo");
-}
 
 class AnimatedContainerApp extends StatefulWidget {
   @override
@@ -52,17 +56,15 @@ class _AnimatedContainerAppState extends State<AnimatedContainerApp> {
           width: _width,
           height: _height,
           child: GestureDetector(
-              child: Image.network(
-                  "http://www.dacoromania.org/upload/o/71/712227_wolf-png-logo.png"),
+              child: Image.network(images[1]),
               onVerticalDragUpdate: (DragUpdateDetails details) {
                 setState(() {
+                  print(controller.toString());
                   if(details.delta.dy > 0){
                     _height = 300;
-                    print("down" + details.delta.dy.toString());
                   }
                   else{
                     _height =100;
-                    print("up");
                   }
                   // Generate a random width and height.
                 });

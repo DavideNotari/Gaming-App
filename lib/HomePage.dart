@@ -1,6 +1,7 @@
 import 'package:flutter_app/team_fragment.dart';
 import 'package:flutter_app/news_fragment.dart';
 import 'package:flutter_app/social_fragment.dart';
+import 'package:flutter_app/offers_fragment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -15,7 +16,8 @@ class HomePage extends StatefulWidget {
   final drawerItems = [
     new DrawerItem("Notizie", Icons.style),
     new DrawerItem("Team", Icons.supervisor_account),
-    new DrawerItem("Social", Icons.face)
+    new DrawerItem("Social", Icons.face),
+    new DrawerItem("Offerte", Icons.attach_money),
   ];
 
   @override
@@ -37,6 +39,8 @@ class HomePageState extends State<HomePage> {
         return new FirstFragment();
       case 2:
         return new ThirdFragment();
+      case 3:
+        return new FourthFragment();
 
       default:
         return new Text("Error");
@@ -66,6 +70,7 @@ class HomePageState extends State<HomePage> {
         // here we display the title corresponding to the fragment
         // you can instead choose to have a static title
         title: new Text(widget.drawerItems[_selectedDrawerIndex].title),
+        backgroundColor: Colors.blueAccent,
       ),
       drawer: new Drawer(
         child: new Column(
